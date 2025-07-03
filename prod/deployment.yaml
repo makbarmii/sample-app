@@ -17,3 +17,16 @@ spec:
         image: us-central1-docker.pkg.dev/qwiklabs-gcp-01-b7d6ecc36d61/my-repository/hello-cloudbuild:v1.0
         ports:
         - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: production-app
+spec:
+  selector:
+    app: production-app
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
